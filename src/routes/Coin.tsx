@@ -147,23 +147,6 @@ function Coin() {
     const chartMatch = useMatch("/:coinId/chart");
     const { isLoading:infoLoading, data:infoData } = useQuery<InfoData>(["info",coinId], () => fetchCoinIofo(coinId!));
     const { isLoading:tickersLoading, data:tickersData } = useQuery<PriceData>(["tickers",coinId], () => fetchCoinTickers(coinId!));
-    /* const [info, setInfo] = useState<InfoData>();
-    const [priceInfo, setPriceInfo] = useState<PriceData>();
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-      (async () => {
-        const infoData = await(
-          await fetch(`https://api.coinpaprika.com/v1/coins/${coinId}`)
-        ).json();
-        const priceData = await(
-          await fetch(`https://api.coinpaprika.com/v1/tickers/${coinId}`)
-        ).json();
-        setInfo(infoData);
-        setPriceInfo(priceData);
-        setLoading(false);
-      })();
-    },[coinId]) */
     const loading = infoLoading || tickersLoading;
     return (
         <Container>
@@ -200,17 +183,17 @@ function Coin() {
                 </OverviewItem>
               </Overview>
               <Tabs>
-                <Tab isActive={priceMatch !== null}>
-                  <Link to={`/${coinId}/price`}>PRICE</Link>
-                </Tab>
                 <Tab isActive={chartMatch !== null}>
                   <Link to={`/${coinId}/chart`}>CHART</Link>
                 </Tab>
+                <Tab isActive={priceMatch !== null}>
+                  <Link to={`/${coinId}/price`}>PRICE</Link>
+                </Tab>
               </Tabs>
               <Routes>
-                <Route path="price" element={<Price />}>
+                <Route path="chart" element={<Chart coinId={coinId as string}/>} >
                 </Route>
-                <Route path="chart" element={<Chart />}>
+                <Route path="price" element={<Price />}>
                 </Route>
               </Routes>
             </> 
