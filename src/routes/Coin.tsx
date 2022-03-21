@@ -162,7 +162,7 @@ function Coin() {
     return (
         <Container>
         <Header>
-          <Back><Link to={`/`}><FaHome /></Link></Back>
+          <Back><FaHome /></Back>
           <Title>{ state?.name ? state.name : loading ? "Loading..." : infoData?.name}</Title>
           <Themes><FaSun /></Themes>
         </Header>
