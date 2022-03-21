@@ -21,7 +21,7 @@ const Header = styled.header`
 const CoinsList = styled.ul``;
 
 const Coin = styled.li`
-  background-color: white;
+  background-color: ${props => props.theme.textColor};
   color: ${props => props.theme.bgColor};
   margin-bottom:10px;
   border-radius:15px;
@@ -68,17 +68,8 @@ interface ICoin {
 }
 
 function Coins() {
-  const {isLoading, data} = useQuery<ICoin[]>("allCoins", fetchCoins)
-    /* const [coins, setCoins] = useState<CoinInterface[]>([]);
-    const [loading, setLoading] = useState(true);
-    useEffect(() => {
-      (async() => {
-        const response = await fetch("https://api.coinpaprika.com/v1/coins");
-        const json = await response.json();
-        setCoins(json.slice(0,100));
-        setLoading(false);
-      })();
-    },[]); */
+  const {isLoading, data} = useQuery<ICoin[]>("allCoins", fetchCoins);
+  
     return (
       <Container>
         <Header>

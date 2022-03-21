@@ -27,6 +27,9 @@ function Chart({coinId}: ChartProps) {
             <ReactApexChart
                 type="line"
                 options={{ 
+                    theme: {
+                        mode: "dark",
+                    },
                     chart: {
                         height:300, 
                         width:500,
@@ -44,9 +47,25 @@ function Chart({coinId}: ChartProps) {
                         show:false
                     },
                     xaxis:{
-                        labels: {show: false},
-                        axisTicks: {show : false },
                         axisBorder: { show: false},
+                        axisTicks: {show : false },
+                        labels: {
+                            show: false,
+                            datetimeFormatter:{month:"mmm'yy"},
+                        },
+                        type:"datetime",
+                        categories: data?.map((price) => price.time_close),
+                        
+                    },
+                    fill: { 
+                        type: "gradient", 
+                        gradient:{gradientToColors:["#0be881"], stops: [0,100]},
+                    },
+                    colors: ["#0fbcf9"],
+                    tooltip: {
+                        y: {
+                            formatter: (value) => `$${value.toFixed(3)}`
+                        }
                     }
                 }}
                 series={[

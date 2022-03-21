@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import Chart from "./Chart";
 import Price from "./Price";
 import { fetchCoinTickers,fetchCoinIofo } from "../api";
+import { FaHome, FaSun } from "react-icons/fa";
 
 const Container = styled.div`
   padding: 0px 20px;
@@ -16,14 +17,24 @@ const Container = styled.div`
 const Header = styled.header`
   height: 10vh;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  position:relative;
 `;
 
 const Title = styled.h1`
     font-size:48px;   
     color: ${props => props.theme.accentColor};
 `;
+
+const Back = styled.div`
+  font-size:30px;
+  color: ${props => props.theme.textColor};
+`
+const Themes = styled.div`
+  font-size:30px;
+  color: ${props => props.theme.textColor};
+`
 
 const Loader = styled.span`
   display: flex;
@@ -151,7 +162,9 @@ function Coin() {
     return (
         <Container>
         <Header>
+          <Back><Link to={`/`}><FaHome /></Link></Back>
           <Title>{ state?.name ? state.name : loading ? "Loading..." : infoData?.name}</Title>
+          <Themes><FaSun /></Themes>
         </Header>
         {loading 
           ? (<Loader>Loading...</Loader>) 
@@ -193,7 +206,7 @@ function Coin() {
               <Routes>
                 <Route path="chart" element={<Chart coinId={coinId as string}/>} >
                 </Route>
-                <Route path="price" element={<Price />}>
+                <Route path="price" element={<Price coinId={coinId as string}/>}>
                 </Route>
               </Routes>
             </> 
