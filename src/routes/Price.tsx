@@ -11,11 +11,11 @@ const Container = styled.div`
 const DataList = styled.div`
     width:100%;
     font-size: 15px;
-    background-color:white;
+    background-color:rgba(0,0,0,0.5);
     line-height:30px;
     border-radius:10px;
     padding: 5px;
-    color: black;
+    color: white;
     span{
         color:${props => props.theme.accentColor}
     }

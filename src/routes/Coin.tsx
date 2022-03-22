@@ -54,6 +54,7 @@ const OverviewItem = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: white;
 
   span:first-child{
     font-size: 10px;
@@ -81,7 +82,7 @@ const Tab = styled.span<{ isActive: boolean }>`
   font-weight:400;
   background-color: rgba(0,0,0,0.5);
   border-radius: 10px;
-  color : ${props => props.isActive ? props.theme.accentColor : props.theme.textColor};
+  color : ${props => props.isActive ? props.theme.accentColor : "white"};
   a{
     padding: 7px 0px;
     display: block;
@@ -150,8 +151,11 @@ interface PriceData {
     }
   }
 }
+interface tg{
+  toggleTheme: () => void
+}
 
-function Coin() {
+function Coin({toggleTheme}:tg) {
     const { coinId } = useParams();
     const { state } = useLocation() as RouteState;
     const priceMatch = useMatch("/:coinId/price");
@@ -164,7 +168,7 @@ function Coin() {
         <Header>
           <Back><Link to={`/`}><FaHome /></Link></Back>
           <Title>{ state?.name ? state.name : loading ? "Loading..." : infoData?.name}</Title>
-          <Themes><FaSun /></Themes>
+          <Themes onClick={toggleTheme}><FaSun /></Themes>
         </Header>
         {loading 
           ? (<Loader>Loading...</Loader>) 
