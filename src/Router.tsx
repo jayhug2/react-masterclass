@@ -4,13 +4,14 @@ import Coin from "./routes/Coin";
 
 interface tg{
   toggleTheme: () => void;
+  isDark : boolean
 }
 
-function Router({toggleTheme}:tg){
+function Router({toggleTheme,isDark}:tg){
     return (
       <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Routes>
-          <Route path="/:coinId/*" element={<Coin toggleTheme={toggleTheme}/>} />
+          <Route path="/:coinId/*" element={<Coin toggleTheme={toggleTheme} isDark={isDark}/>} />
           <Route path={`/`} element={<Coins />}/>
         </Routes>
       </BrowserRouter>

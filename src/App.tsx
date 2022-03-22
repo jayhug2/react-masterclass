@@ -74,7 +74,7 @@ function App() {
     <>
     <ThemeProvider theme={isDark ? darktheme : lighttheme}>
       <GlobalStyle/>
-      <Router toggleTheme={changeTheme}/>
+      <Router toggleTheme={changeTheme} isDark={isDark}/>
     </ThemeProvider>
     </>
   );

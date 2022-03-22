@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import Chart from "./Chart";
 import Price from "./Price";
 import { fetchCoinTickers,fetchCoinIofo } from "../api";
-import { FaHome, FaSun } from "react-icons/fa";
+import { FaHome, FaSun, FaMoon } from "react-icons/fa";
 
 const Container = styled.div`
   padding: 0px 20px;
@@ -153,9 +153,10 @@ interface PriceData {
 }
 interface tg{
   toggleTheme: () => void
+  isDark: boolean
 }
 
-function Coin({toggleTheme}:tg) {
+function Coin({toggleTheme,isDark}:tg) {
     const { coinId } = useParams();
     const { state } = useLocation() as RouteState;
     const priceMatch = useMatch("/:coinId/price");
@@ -168,7 +169,7 @@ function Coin({toggleTheme}:tg) {
         <Header>
           <Back><Link to={`/`}><FaHome /></Link></Back>
           <Title>{ state?.name ? state.name : loading ? "Loading..." : infoData?.name}</Title>
-          <Themes onClick={toggleTheme}><FaSun /></Themes>
+          <Themes onClick={toggleTheme}>{isDark ? <FaSun /> : <FaMoon /> }</Themes>
         </Header>
         {loading 
           ? (<Loader>Loading...</Loader>) 
