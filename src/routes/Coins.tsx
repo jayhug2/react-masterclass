@@ -5,6 +5,7 @@ import { useQuery } from "react-query";
 import { fetchCoins } from "../api";
 
 
+
 const Container = styled.div`
   padding: 0px 20px;
   max-width:480px;
@@ -82,7 +83,7 @@ function Coins() {
           {data?.slice(0,100).map((coin) => (
             <Coin key={coin.id}>
               <Link to={`/${coin.id}`} state={{name:coin.name, rank:coin.rank}}>
-                <Img src={`https://cryptoicon-api.vercel.app/api/icon/${coin.symbol.toLowerCase()}`} />
+                <Img src={`https://cryptocurrencyliveprices.com/img/${coin.id}.png`} />
                 {coin.name} &rarr;
               </Link>
             </Coin>
